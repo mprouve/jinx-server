@@ -152,6 +152,7 @@ process.on('unhandledRejection', (reason, p) => {
 
 app.listen(config.app.port, () => {
   logger.info(`NODE_ENVIRONMENT: ${process.env.NODE_ENV}`)
-  logger.info(`PLATFORM_ENVIRONMENT: ${config.env}`)
+  logger.info(`SERVER_ENVIRONMENT: ${config.env}`)
+  logger.info(`VERSION: ${config.version}`)
   logger.info(`Server listening on port ${config.app.port}`)
 })

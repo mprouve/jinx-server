@@ -1,5 +1,7 @@
 import { createLogger, format, transports } from 'winston'
 import 'winston-daily-rotate-file'
+import config from '../config'
+
 const { combine, timestamp, errors, json } = format
 
 const buildLoggerProd = (): any => {
@@ -14,7 +16,7 @@ const buildLoggerProd = (): any => {
   })
   // Transport to create a log rotation for combined logs
   const combinedFileRotateTransport = new transports.DailyRotateFile({
-    level: 'http',
+    level: config.logger_level,
     filename: 'logs/combined-%DATE%.log',
     datePattern: 'YYYY-MM-DD',
     maxFiles: '30d'
@@ -35,7 +37,7 @@ const buildLoggerProd = (): any => {
   // combinedFileRotateTransport.on('logRemoved', (removedFilename) => {})
 
   const logger = createLogger({
-    level: 'http',
+    level: config.logger_level,
     format: combine(timestamp(), errors({ stack: true }), json()),
     defaultMeta: { service: 'user-service' },
     transports: [consoleTransport, errorsFileTransport, combinedFileRotateTransport],

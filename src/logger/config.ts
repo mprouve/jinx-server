@@ -1,4 +1,4 @@
-const config = {
+const loggerConfig = {
   levels: {
     error: 0,
     warn: 1,
@@ -19,4 +19,4 @@ const config = {
   }
 }
 
-export default config
+export default loggerConfig

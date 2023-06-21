@@ -1,63 +1,35 @@
-// SETUP ENVIRONMENT VARIABLE
-let env
+import metadata from './metadata/metadata.json'
+import { Config, ServerEnvironment } from './typings/config.d'
 
-if (
-  process.env.NODE_ENV === 'local' ||
-  process.env.NODE_ENV === 'undefined' ||
-  typeof process.env.NODE_ENV === 'undefined'
-) {
-  env = 'local'
-} else if (process.env.NODE_ENV === 'production') {
-  env = 'production'
-} else {
-  env = 'local'
-}
+const getConfig = (): Config => {
+  const version = process.env.VERSION || '0.0.0'
+  const nodeEnv: string = process.env.NODE_ENV || 'development'
+  const serverEnv = (process.env.APP_ENV as ServerEnvironment) || 'local'
+  const isProd: boolean = serverEnv === 'prod'
 
-type EnvironmentType = {
-  env: string
-  NODE_ENV: string | undefined
-  debug: boolean
-  app: {
-    url: string
-    port: string | number
-    public_dir: string
-    entry_file: string
+  /**
+   * Set global config settings
+   */
+  const config: Config = {
+    node_env: nodeEnv,
+    env: serverEnv,
+    is_prod: isProd,
+    version: `${version}-${metadata.build}`,
+    logger_level: isProd ? 'http' : 'debug',
+    base_url: {
+      jynx: process.env.APP_URL || ''
+    },
+    app: {
+      url: process.env.APP_URL || '',
+      port: process.env.PORT || 10000,
+      public_dir: isProd ? '../src/public' : 'public',
+      entry_file: isProd ? '../src/public/index.html' : 'public/index.html'
+    }
   }
+
+  return config
 }
 
-// ****************************************
-// PRODUCTION *****************************
-// ****************************************
-const production: EnvironmentType = {
-  env,
-  NODE_ENV: process.env.NODE_ENV,
-  debug: false,
-  app: {
-    url: 'https://www.theundrgrnd.xyz',
-    port: process.env.PORT || 10000,
-    public_dir: '../src/public',
-    entry_file: '../src/public/index.html'
-  }
-}
-
-// ****************************************
-// LOCAL **********************************
-// ****************************************
-const local: EnvironmentType = {
-  env,
-  NODE_ENV: process.env.NODE_ENV,
-  debug: true,
-  app: {
-    url: 'http://localhost:3000',
-    port: process.env.PORT || 10000,
-    public_dir: 'public',
-    entry_file: 'public/index.html'
-  }
-}
-
-const config = <EnvironmentType>{
-  production,
-  local
-}[env]
+const config: Config = getConfig()
 
 export default config

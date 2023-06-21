@@ -1,6 +1,8 @@
-import config from './config'
+import loggerConfig from './config'
 import { createLogger, format, transports, addColors } from 'winston'
 import * as stream from 'stream'
+import config from '../config'
+
 const { combine, timestamp, printf, colorize, errors } = format
 
 const buildLoggerDev = (): any => {
@@ -11,11 +13,11 @@ const buildLoggerDev = (): any => {
   // Transport to print logs to console
   const consoleTransport = new transports.Console()
 
-  addColors(config.colors)
+  addColors(loggerConfig.colors)
 
   const logger = createLogger({
-    levels: config.levels,
-    level: 'debug',
+    levels: loggerConfig.levels,
+    level: config.logger_level,
     format: combine(
       colorize({ all: true }),
       timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),

@@ -1,4 +1,4 @@
-# **JYNX** 💬 🗺️ ✨
+# **Jynx** 💬 🗺️ ✨
 
 ## **TABLE OF CONTENTS**
 
