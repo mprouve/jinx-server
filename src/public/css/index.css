@@ -147,8 +147,17 @@ a {
   transform: translate(0, -50%);
 }
 
+.logo {
+  display: block;
+  width: 8rem;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+}
+
 .primary-name {
   display: inline-block;
+  margin-top: 2rem;
   /* border: 1px solid red; */
   white-space: pre-line;
   word-break: break-word;
@@ -223,7 +232,12 @@ a {
 }
 
 @media (max-width: 800px) {
+  .logo {
+    width: 5rem;
+    border-radius: 0.3rem;
+  }
   .primary-name {
+    margin-top: 1rem;
     font-size: 6rem;
     line-height: 1.2rem;
   }
