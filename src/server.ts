@@ -7,6 +7,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import path from 'path'
 import logger from './logger/index'
+import { connectDB } from './db/mongodb'
 import morganMiddleware from './middleware/morgan/morgan'
 
 const app: Express = express() // INITIALIZE EXPRESS APP HERE
@@ -150,9 +151,13 @@ process.on('unhandledRejection', (reason, p) => {
   logger.error(`Unhandled Rejection at: ${p}, Reason: ${reason}`)
 })
 
-app.listen(config.app.port, () => {
-  logger.info(`NODE_ENVIRONMENT: ${process.env.NODE_ENV}`)
-  logger.info(`SERVER_ENVIRONMENT: ${config.env}`)
-  logger.info(`VERSION: ${config.version}`)
-  logger.info(`Server listening on port ${config.app.port}`)
+// Connect to mongodb
+connectDB().then(() => {
+  // Turn on the server and listen on specified port
+  app.listen(config.app.port, () => {
+    logger.info(`NODE_ENVIRONMENT: ${process.env.NODE_ENV}`)
+    logger.info(`SERVER_ENVIRONMENT: ${config.env}`)
+    logger.info(`VERSION: ${config.version}`)
+    logger.info(`Server listening on port ${config.app.port}`)
+  })
 })

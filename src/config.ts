@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import metadata from './metadata/metadata.json'
 import { Config, ServerEnvironment } from './typings/config.d'
 
