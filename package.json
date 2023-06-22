@@ -15,8 +15,7 @@
     "start:app:local": "env-cmd -f .env.local yarn dev",
     "start:app:dev": "env-cmd -f .env.dev yarn dev",
     "start:app:staging": "env-cmd -f .env.staging yarn dev",
-    "start:app:prod": "env-cmd -f .env.prod yarn start",
-    "heroku-postbuild": "npm i && mkdir logs"
+    "start:app:prod": "env-cmd -f .env.prod yarn start"
   },
   "repository": {
     "type": "git",
