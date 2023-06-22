@@ -1,4 +1,4 @@
-# **Jynx** 💬 🗺️ ✨
+# **Jynx Server** 💬 🗺️ ✨
 
 ## **TABLE OF CONTENTS**
 

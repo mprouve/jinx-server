@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const winston_1 = require("winston");
 require("winston-daily-rotate-file");
+const config_1 = __importDefault(require("../config"));
 const { combine, timestamp, errors, json } = winston_1.format;
 const buildLoggerProd = () => {
     // Transport to print logs to console
@@ -15,7 +19,7 @@ const buildLoggerProd = () => {
     });
     // Transport to create a log rotation for combined logs
     const combinedFileRotateTransport = new winston_1.transports.DailyRotateFile({
-        level: 'http',
+        level: config_1.default.logger_level,
         filename: 'logs/combined-%DATE%.log',
         datePattern: 'YYYY-MM-DD',
         maxFiles: '30d'
@@ -34,7 +38,7 @@ const buildLoggerProd = () => {
     // combinedFileRotateTransport.on('archive', (zipFilename) => {})
     // combinedFileRotateTransport.on('logRemoved', (removedFilename) => {})
     const logger = (0, winston_1.createLogger)({
-        level: 'http',
+        level: config_1.default.logger_level,
         format: combine(timestamp(), errors({ stack: true }), json()),
         defaultMeta: { service: 'user-service' },
         transports: [consoleTransport, errorsFileTransport, combinedFileRotateTransport],

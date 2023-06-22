@@ -130,6 +130,7 @@ process.on('unhandledRejection', (reason, p) => {
 });
 app.listen(config_1.default.app.port, () => {
     index_1.default.info(`NODE_ENVIRONMENT: ${process.env.NODE_ENV}`);
-    index_1.default.info(`PLATFORM_ENVIRONMENT: ${config_1.default.env}`);
+    index_1.default.info(`SERVER_ENVIRONMENT: ${config_1.default.env}`);
+    index_1.default.info(`VERSION: ${config_1.default.version}`);
     index_1.default.info(`Server listening on port ${config_1.default.app.port}`);
 });

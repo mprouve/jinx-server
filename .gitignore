@@ -18,3 +18,7 @@ coverage
 
 # Benchmarking
 benchmarks/graphs
+
+# Build artifacts
+dist/
+dist

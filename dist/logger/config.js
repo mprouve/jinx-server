@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const config = {
+const loggerConfig = {
     levels: {
         error: 0,
         warn: 1,
@@ -20,4 +20,4 @@ const config = {
         silly: 'magenta'
     }
 };
-exports.default = config;
+exports.default = loggerConfig;

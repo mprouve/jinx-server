@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("./config"));
 const winston_1 = require("winston");
 const stream = __importStar(require("stream"));
+const config_2 = __importDefault(require("../config"));
 const { combine, timestamp, printf, colorize, errors } = winston_1.format;
 const buildLoggerDev = () => {
     // Custom log format
@@ -40,7 +41,7 @@ const buildLoggerDev = () => {
     (0, winston_1.addColors)(config_1.default.colors);
     const logger = (0, winston_1.createLogger)({
         levels: config_1.default.levels,
-        level: 'debug',
+        level: config_2.default.logger_level,
         format: combine(colorize({ all: true }), timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), errors({ stack: true }), myFormat),
         transports: [consoleTransport]
     });

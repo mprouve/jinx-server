@@ -1,11 +1,11 @@
 {
-  "name": "jynx",
+  "name": "jinx-server",
   "version": "1.0.0",
-  "description": "Welcome to Jynx, an innovative chat platform designed to conjure up connections across the globe. Our users engage in a daily exercise of wordplay, responding to a push notification with a single word of their choice. Like casting a spell, they're then transported into a chat room with others who thought of the same word.",
+  "description": "Welcome to Jinx, an innovative chat platform designed to conjure up connections across the globe. Our users engage in a daily exercise of wordplay, responding to a push notification with a single word of their choice. Like casting a spell, they're then transported into a chat room with others who thought of the same word.",
   "main": "server.js",
   "private": true,
   "scripts": {
-    "build": "npx tsc",
+    "build": "node scripts/inc-build.js && npx tsc",
     "format:check": "prettier --check \"src/**/*\"",
     "format:write": "prettier --write \"src/**/*\"",
     "lint:check": "eslint \"src/**/*\"",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mprouve/jynx.git"
+    "url": "git+https://github.com/mprouve/jinx-server.git"
   },
   "keywords": [],
   "author": {
@@ -29,9 +29,9 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mprouve/jynx/issues"
+    "url": "https://github.com/mprouve/jinx-server/issues"
   },
-  "homepage": "https://github.com/mprouve/jynx#readme",
+  "homepage": "https://github.com/mprouve/jinx-server#readme",
   "engines": {
     "node": "18.x"
   },

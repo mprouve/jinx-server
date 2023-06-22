@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const morgan_1 = __importDefault(require("morgan"));
 const index_1 = __importDefault(require("../../logger/index"));
 const config_1 = __importDefault(require("../../config"));
-const skip = () => config_1.default.env === 'production';
+const skip = () => config_1.default.env === 'prod';
 const stream = {
     write: (message) => {
         index_1.default.http(message);
